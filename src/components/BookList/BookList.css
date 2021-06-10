@@ -1,0 +1,12 @@
+.book-container{
+    display: flex;
+    text-align: center;
+}
+
+h3{
+    padding: 10px;
+}
+
+.book-title{
+    min-height: 30px;
+}

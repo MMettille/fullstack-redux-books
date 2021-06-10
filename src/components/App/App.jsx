@@ -4,6 +4,25 @@ import {useEffect} from 'react';
 import './App.css';
 import Axios from 'axios';
 import {useDispatch} from 'react-redux';
+import '@fontsource/roboto';
+import { createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#76d275',
+      main: '#43a047',
+      dark: '#00701a',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#5ddef4',
+      main: '#00acc1',
+      dark: '#007c91',
+      contrastText: '#000',
+    },
+  },
+});
 
 function App() {
 
@@ -28,6 +47,7 @@ function App() {
   }
 
   return (
+    <ThemeProvider theme={theme}>
     <div className="App">
       <header><h1>Books w/ Redux!</h1></header>
       <main>
@@ -35,6 +55,7 @@ function App() {
         <BookList />
       </main>
     </div>
+    </ThemeProvider>
   );
 }
 

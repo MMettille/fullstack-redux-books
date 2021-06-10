@@ -1,17 +1,21 @@
 import {useSelector} from 'react-redux'
+import BookListItem from '../BookListItem/BookListItem'
+import './BookList.css'
 
 function BookList() {
   const bookList = useSelector(store => store.bookList);
 
   return (
-    <section>
-      <h2>All Books</h2>
-      <ul>
-        {bookList.map((book, index) => 
-          <li key={index}>{book.title} by {book.author}</li>  
-        )}
-      </ul>
-    </section>
+    <div>
+      <section>
+        <h3>All Books</h3>
+      </section>
+      <div className="book-container">
+          {bookList.map((book, index) => {
+            return <BookListItem key={index} book={book} />  
+          })}
+      </div>
+    </div>
   );
 }
 
