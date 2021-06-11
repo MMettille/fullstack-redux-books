@@ -1,10 +1,22 @@
 import React from 'react';
 import './BookListItem.css'
+import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {Draggable} from "react-beautiful-dnd";
+import { DragDropContext } from 'react-beautiful-dnd'
 
 function BookListItem({book}){
 
     return(
-                <div className="book-box">
+        <Draggable 
+            key={index}
+            draggableId={index+''}
+            index={index}>
+                {(provided)=> (<div
+                className="book-box"
+                ref={provided.innerRef}
+                {...provided.droppableProps} 
+                {...provided.dragHandleProps}>
                     <section className="book-title-header">
                         <h5>Book Title</h5>
                     </section>
@@ -16,7 +28,9 @@ function BookListItem({book}){
                             Delete
                         </button>
                     </section>
-                </div>
+                    </div>
+                )}
+        </Draggable>
     )
 }
 
