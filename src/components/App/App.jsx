@@ -52,7 +52,7 @@ function App() {
       <header><h1>Books w/ Redux!</h1></header>
       <main>
         <BookForm getBooks={getBooks}/>
-        <BookList />
+        <BookList getBooks={getBooks}/>
       </main>
     </div>
     </ThemeProvider>

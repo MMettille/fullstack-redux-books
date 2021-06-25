@@ -5,7 +5,7 @@ const pool = require('../modules/pool');
 
 // Get all books
 router.get('/', (req, res) => {
-  let queryText = 'SELECT title, author FROM "books" ORDER BY "title";';
+  let queryText = 'SELECT * FROM "books" ORDER BY "title";';
   pool.query(queryText).then(result => {
     // Sends back the results in an object
     res.send(result.rows);
@@ -32,6 +32,20 @@ router.post('/',  (req, res) => {
       console.log(`Error adding new book`, error);
       res.sendStatus(500);
     });
+});
+
+router.put('/:id', (req, res) => {
+  // Update this single title
+  const idToUpdate = req.params.id;
+  const sqlText = `UPDATE "books" SET title = $1 WHERE id = $2`;
+  pool.query(sqlText, [req.body.title, idToUpdate])
+      .then((result) => {
+          res.sendStatus(200);
+      })
+      .catch((error) => {
+          console.log(`Error making database query ${sqlText}`, error);
+          res.sendStatus(500);
+      });
 });
 
 module.exports = router;

@@ -15,9 +15,25 @@ const bookList = (state = [], action) => {
   return state;
 }
 
+const bookToEdit = (state = {}, action) => {
+  if(action.type === 'SET_EDIT_BOOK'){
+    return action.payload
+  } else if(action.type === 'EDIT_ONCHANGE') {
+    return {
+        // spread: give me all of the object (...state)
+        ...state,
+        // change this one in particular
+        [action.payload.property]: action.payload.value,
+    }
+  } else if(action.type === 'EDIT_CLEAR') {
+    return { title: '' };
+  }
+  return state;
+}
+
 const reduxStore = createStore(
   combineReducers({
-    bookList
+    bookList, bookToEdit
   }),
   applyMiddleware(logger)
 );

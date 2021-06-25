@@ -2,9 +2,10 @@ import {useSelector} from 'react-redux'
 import BookListItem from '../BookListItem/BookListItem'
 import './BookList.css'
 
+
 import Box from '@material-ui/core/Box';
 
-function BookList() {
+function BookList({getBooks}) {
   const bookList = useSelector(store => store.bookList);
 
   return (
@@ -20,7 +21,7 @@ function BookList() {
           m={2}
         >
           {bookList.map((book, index) => {
-            return <BookListItem key={index} book={book} />  
+            return <BookListItem key={index} book={book} getBooks={getBooks}/>  
           })}
         </Box>
       </div>
